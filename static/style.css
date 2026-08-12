@@ -1,137 +1,192 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  user-select: none;
-  -webkit-user-select: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 body {
-  overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #000;
-  color: #fff;
-  touch-action: none;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
+    touch-action: none;
 }
 
 /* Crosshair */
 #crosshair {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 8px; height: 8px;
-  margin-top: -4px; margin-left: -4px;
-  background-color: #00ff00;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10;
-  border: 1px solid #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    margin-left: -4px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
+    border: 1px solid #000;
 }
 
 /* HUD */
 #hud {
-  position: absolute;
-  top: 15px; left: 15px;
-  background: rgba(0, 0, 0, 0.75);
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  z-index: 5;
-  border: 1px solid #444;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 5;
+    border: 1px solid #444;
 }
 
 /* 📱 MOBIL TUGMALAR STILI */
 #mobile-controls {
-  display: none; /* Kompyuterda ko'rinmaydi, mobil sensor aniqlansa yoqiladi */
-  position: absolute;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: 15;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 15;
 }
 
 /* Virtual Joystik */
 #joystick-zone {
-  position: absolute;
-  bottom: 40px; left: 40px;
-  width: 120px; height: 120px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  pointer-events: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #joystick-knob {
-  width: 50px; height: 50px;
-  background: rgba(0, 255, 136, 0.8);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,255,136,0.5);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 136, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 /* O'ng tarafdagi tugmalar */
 #mobile-buttons {
-  position: absolute;
-  bottom: 40px; right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  pointer-events: auto;
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    pointer-events: auto;
 }
 
 #btn-shoot {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  background: rgba(255, 68, 68, 0.85);
-  color: #fff;
-  font-weight: bold;
-  font-size: 14px;
-  border: 2px solid #fff;
-  box-shadow: 0 0 15px rgba(255,68,68,0.5);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 68, 68, 0.85);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+}
+
+#btn-jump {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(0, 150, 255, 0.85);
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
 }
 
 #btn-reload {
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 200, 0, 0.85);
-  color: #000;
-  font-weight: bold;
-  font-size: 16px;
-  border: 2px solid #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 200, 0, 0.85);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid #fff;
 }
 
 /* Modal UI */
 #overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
 }
 
 .card {
-  background: #1c1d22;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  width: 340px;
-  border: 1px solid #333;
+    background: #1c1d22;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    width: 340px;
+    border: 1px solid #333;
 }
 
-.card h1 { margin-bottom: 15px; color: #00ff88; }
+.card h1 {
+    margin-bottom: 15px;
+    color: #00ff88;
+}
+
 .card input {
-  width: 100%; padding: 12px; margin-bottom: 12px;
-  border-radius: 6px; border: none; background: #2b2c34; color: #fff;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: none;
+    background: #2b2c34;
+    color: #fff;
 }
+
 .card button {
-  width: 100%; padding: 12px; background: #00ff88; color: #000;
-  font-weight: bold; border: none; border-radius: 6px; cursor: pointer;
-  margin-bottom: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #00ff88;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
 }
-#leaderboard-list { list-style: none; text-align: left; max-height: 120px; overflow-y: auto; }
-#leaderboard-list li { padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between; font-size: 14px; }
+
+#leaderboard-list {
+    list-style: none;
+    text-align: left;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#leaderboard-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
