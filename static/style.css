@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 body {
@@ -9,14 +11,15 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #000;
   color: #fff;
+  touch-action: none;
 }
 
-/* Crosshair (Nishop) */
+/* Crosshair */
 #crosshair {
   position: absolute;
   top: 50%; left: 50%;
-  width: 10px; height: 10px;
-  margin-top: -5px; margin-left: -5px;
+  width: 8px; height: 8px;
+  margin-top: -4px; margin-left: -4px;
   background-color: #00ff00;
   border-radius: 50%;
   pointer-events: none;
@@ -24,17 +27,79 @@ body {
   border: 1px solid #000;
 }
 
-/* HUD Panel */
+/* HUD */
 #hud {
   position: absolute;
-  top: 20px; left: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px 25px;
+  top: 15px; left: 15px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 12px 20px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   z-index: 5;
-  border: 1px solid #333;
+  border: 1px solid #444;
+}
+
+/* 📱 MOBIL TUGMALAR STILI */
+#mobile-controls {
+  display: none; /* Kompyuterda ko'rinmaydi, mobil sensor aniqlansa yoqiladi */
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Virtual Joystik */
+#joystick-zone {
+  position: absolute;
+  bottom: 40px; left: 40px;
+  width: 120px; height: 120px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#joystick-knob {
+  width: 50px; height: 50px;
+  background: rgba(0, 255, 136, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,255,136,0.5);
+}
+
+/* O'ng tarafdagi tugmalar */
+#mobile-buttons {
+  position: absolute;
+  bottom: 40px; right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  pointer-events: auto;
+}
+
+#btn-shoot {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 68, 68, 0.85);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 15px rgba(255,68,68,0.5);
+}
+
+#btn-reload {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 200, 0, 0.85);
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #fff;
 }
 
 /* Modal UI */
@@ -50,67 +115,23 @@ body {
 }
 
 .card {
-  background: #1e1e24;
-  padding: 30px;
+  background: #1c1d22;
+  padding: 25px;
   border-radius: 12px;
   text-align: center;
-  width: 360px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  width: 340px;
   border: 1px solid #333;
 }
 
-.card h1 {
-  margin-bottom: 15px;
-  color: #00ff88;
-}
-
+.card h1 { margin-bottom: 15px; color: #00ff88; }
 .card input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  background: #2a2a35;
-  color: #fff;
-  font-size: 16px;
+  width: 100%; padding: 12px; margin-bottom: 12px;
+  border-radius: 6px; border: none; background: #2b2c34; color: #fff;
 }
-
 .card button {
-  width: 100%;
-  padding: 12px;
-  background: #00ff88;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-  transition: 0.2s;
+  width: 100%; padding: 12px; background: #00ff88; color: #000;
+  font-weight: bold; border: none; border-radius: 6px; cursor: pointer;
+  margin-bottom: 15px;
 }
-
-.card button:hover {
-  background: #00cc6a;
-}
-
-.card h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #ccc;
-}
-
-#leaderboard-list {
-  list-style: none;
-  text-align: left;
-  max-height: 150px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-#leaderboard-list li {
-  padding: 6px 0;
-  border-bottom: 1px solid #333;
-  display: flex;
-  justify-content: space-between;
-}
+#leaderboard-list { list-style: none; text-align: left; max-height: 120px; overflow-y: auto; }
+#leaderboard-list li { padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between; font-size: 14px; }
