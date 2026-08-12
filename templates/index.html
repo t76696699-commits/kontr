@@ -2,24 +2,39 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <title>Mini CS 3D — Full Stack Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Mini CS 3D — Counter Strike Edition</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-  <!-- Crosshair (Nishop) -->
+  <!-- Nishop -->
   <div id="crosshair"></div>
 
-  <!-- HUD (Jon, O'qlar va Ball) -->
+  <!-- HUD Panel -->
   <div id="hud">
     <div>O'yinchi: <span id="player-name-display">—</span></div>
-    <div>Yo'q qilindi: <span id="score-display">0</span></div>
-    <div style="margin-top: 8px; color: #ff4444;">
+    <div>Kill: <span id="score-display">0</span></div>
+    <div style="margin-top: 5px; color: #ff4444;">
       HP: <span id="hp-display">100</span> / 100
     </div>
     <div style="margin-top: 5px; color: #00ff88;">
       O'qlar: <span id="ammo-display">30 / 30</span>
-      <span id="reload-msg" style="display:none; color: #ff3333; font-size: 14px;"> (RELOADING...)</span>
+      <span id="reload-msg" style="display:none; color: #ff3333; font-size: 14px;"> (O'QLANMOQDA...)</span>
+    </div>
+  </div>
+
+  <!-- 📱 MOBIL UCHUN BOSHGARUV TUGMALARI -->
+  <div id="mobile-controls">
+    <!-- Chap joystik hududi -->
+    <div id="joystick-zone">
+      <div id="joystick-knob"></div>
+    </div>
+
+    <!-- O'ng tarafdagi harakatlantirish va otish tugmalari -->
+    <div id="mobile-buttons">
+      <button id="btn-shoot">💥 OTISH</button>
+      <button id="btn-reload">🔄 R</button>
     </div>
   </div>
 
@@ -28,18 +43,17 @@
     <div class="card">
       <h1 id="menu-title">MINI CS 3D</h1>
       <p id="game-over-msg" style="display:none; color: #ff4444; font-weight: bold; margin-bottom: 10px;"></p>
-
+      
       <input type="text" id="username" placeholder="Nikingizni kiriting..." value="Player1">
-      <button id="start-btn">O'YINNI BOSHLOVCHI</button>
-
-      <h2>🏆 Top-10 O'yinchilar</h2>
+      <button id="start-btn">O'YINNI BOSHLA</button>
+      
+      <h2>🏆 Top O'yinchilar</h2>
       <ul id="leaderboard-list">
         <li>Yuklanmoqda...</li>
       </ul>
     </div>
   </div>
 
-  <!-- Three.js Import map -->
   <script type="importmap">
     {
       "imports": {
