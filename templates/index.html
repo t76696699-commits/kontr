@@ -3,66 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Mini CS 3D — Counter Strike Edition</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-
-  <!-- Nishon -->
-  <div id="crosshair"></div>
-
-  <!-- HUD Panel -->
-  <div id="hud">
-    <div>O'yinchi: <span id="player-name-display">—</span></div>
-    <div>Kill: <span id="score-display">0</span></div>
-    <div style="margin-top: 5px; color: #ff4444;">
-      HP: <span id="hp-display">100</span> / 100
-    </div>
-    <div style="margin-top: 5px; color: #00ff88;">
-      O'qlar: <span id="ammo-display">30 / 30</span>
-      <span id="reload-msg" style="display:none; color: #ff3333; font-size: 14px;"> (O'QLANMOQDA...)</span>
-    </div>
-  </div>
-
-  <!-- 📱 MOBIL UCHUN BOSHGARUV TUGMALARI -->
-  <div id="mobile-controls">
-    <!-- Chap joystik hududi -->
-    <div id="joystick-zone">
-      <div id="joystick-knob"></div>
-    </div>
-
-    <!-- O'ng tarafdagi tugmalar -->
-    <div id="mobile-buttons">
-      <button id="btn-shoot">💥 OTISH</button>
-      <button id="btn-jump">🦘 SAKRASH</button>
-      <button id="btn-reload">🔄 R</button>
-    </div>
-  </div>
-
-  <!-- Boshlang'ich va Game Over ekrani -->
-  <div id="overlay">
-    <div class="card">
-      <h1 id="menu-title">MINI CS 3D</h1>
-      <p id="game-over-msg" style="display:none; color: #ff4444; font-weight: bold; margin-bottom: 10px;"></p>
-
-      <input type="text" id="username" placeholder="Nikingizni kiriting..." value="Player1">
-      <button id="start-btn">O'YINNI BOSHLA</button>
-
-      <h2>🏆 Top O'yinchilar</h2>
-      <ul id="leaderboard-list">
-        <li>Yuklanmoqda...</li>
-      </ul>
-    </div>
-  </div>
+  <title>CS2: Realistic 5v5 Danger Zone</title>
+  <link rel="stylesheet" href="/static/style.css">
 
   <script type="importmap">
     {
       "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
       }
     }
   </script>
-  <script type="module" src="{{ url_for('static', filename='game.js') }}"></script>
+</head>
+<body>
+
+  <!-- START SCREEN -->
+  <div id="overlay">
+    <div class="start-card">
+      <h1>CS2 REALISTIC 5v5 DANGER ZONE</h1>
+      <p>👥 5v5 Jamoaviy Jang • 🚀 Hammada Qanotli Ryukzak • 🎯 Avto-Aimbot • 💣 Bomba</p>
+
+      <div class="controls-info">
+        <div><span>WASD</span> — Harakatlanish</div>
+        <div><span>SICHQONCHA</span> — Otish</div>
+        <div><span>E / SHIFT</span> — Uchish (Jetpack)</div>
+        <div><span>G</span> — Bomba (Grenada) otish</div>
+        <div><span>F</span> — Avto-Aimbot (Avto nishon)</div>
+        <div><span>B</span> — Qurol do'koni</div>
+      </div>
+
+      <button id="start-btn">JANGNI BOSHLASH</button>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-left">
+      <div class="stat-box hp-box">❤️ HP: <span id="hp-display">100</span></div>
+      <div class="stat-box ammo-box">🔫 O'Q: <span id="ammo-display">30 / 30</span></div>
+      <div class="stat-box grenade-box">💣 BOMBA: <span id="grenade-display">3</span></div>
+    </div>
+
+    <div class="hud-right">
+      <div class="stat-box money-box">💵 $<span id="money-display">1000</span></div>
+      <div class="stat-box team-box">🟦 DO'STLAR: <span id="allies-display">4</span></div>
+      <div class="stat-box enemy-box">🟥 DUSHMANLAR: <span id="enemies-display">5</span></div>
+    </div>
+
+    <div id="crosshair">+</div>
+    <div id="aimbot-indicator">🎯 AIMBOT FAOL</div>
+  </div>
+
+  <!-- SHOP MODAL -->
+  <div id="shop-modal" class="modal-overlay">
+    <div class="shop-card">
+      <h2>REALISTIC ARSENAL STORE</h2>
+      <p class="shop-balance">Mablag': $<span id="shop-money-display">1000</span></p>
+
+      <div class="weapon-grid">
+        <div class="weapon-card">
+          <img src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=300" alt="Glock">
+          <h3>Glock-18</h3>
+          <p>Zarar: 25 | Sig'im: 20</p>
+          <button onclick="buyWeapon('Glock-18', 0, 25, 20)">TEKIN</button>
+        </div>
+
+        <div class="weapon-card">
+          <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=300" alt="AK-47">
+          <h3>AK-47 Assault</h3>
+          <p>Zarar: 55 | Sig'im: 30</p>
+          <button onclick="buyWeapon('AK-47', 2700, 55, 30)">$2700</button>
+        </div>
+
+        <div class="weapon-card">
+          <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=300" alt="M4A4">
+          <h3>M4A4 Tactical</h3>
+          <p>Zarar: 50 | Sig'im: 30</p>
+          <button onclick="buyWeapon('M4A4', 3100, 50, 30)">$3100</button>
+        </div>
+
+        <div class="weapon-card">
+          <img src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=300" alt="AWP">
+          <h3>AWP Sniper</h3>
+          <p>Zarar: 110 | Sig'im: 10</p>
+          <button onclick="buyWeapon('AWP', 4750, 110, 10)">$4750</button>
+        </div>
+      </div>
+
+      <button id="close-shop-btn">YOPISH (B)</button>
+    </div>
+  </div>
+
+  <script type="module" src="/static/game.js"></script>
 </body>
 </html>

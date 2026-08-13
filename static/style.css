@@ -1,192 +1,101 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    -webkit-user-select: none;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
-body {
-    overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000;
-    color: #fff;
-    touch-action: none;
+body, html { width: 100%; height: 100%; overflow: hidden; background: #000; color: #fff; }
+
+#overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 15, 20, 0.9); backdrop-filter: blur(8px);
+  display: flex; justify-content: center; align-items: center; z-index: 100;
 }
 
-/* Crosshair */
-#crosshair {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    margin-top: -4px;
-    margin-left: -4px;
-    background-color: #00ff00;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10;
-    border: 1px solid #000;
+.start-card {
+  background: rgba(20, 30, 40, 0.95); border: 2px solid #e67e22;
+  padding: 30px; border-radius: 12px; text-align: center; max-width: 520px;
+  box-shadow: 0 0 30px rgba(230, 126, 34, 0.4);
+}
+
+.start-card h1 { color: #f39c12; font-size: 24px; margin-bottom: 8px; }
+.start-card p { color: #bdc3c7; font-size: 14px; margin-bottom: 20px; }
+
+.controls-info {
+  background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px;
+  text-align: left; margin-bottom: 20px; font-size: 13px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.controls-info span { color: #e67e22; font-weight: bold; }
+
+#start-btn {
+  background: #e67e22; color: #fff; border: none; padding: 14px;
+  font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;
 }
 
 /* HUD */
-#hud {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(0, 0, 0, 0.75);
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 5;
-    border: 1px solid #444;
+#hud { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+.hud-left { position: absolute; bottom: 25px; left: 25px; display: flex; gap: 10px; }
+.hud-right { position: absolute; top: 25px; right: 25px; display: flex; gap: 10px; }
+
+.stat-box {
+  background: rgba(15, 23, 30, 0.85); border-left: 4px solid #3498db;
+  padding: 8px 15px; border-radius: 4px; font-size: 16px; font-weight: bold;
 }
 
-/* 📱 MOBIL TUGMALAR STILI */
-#mobile-controls {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 15;
+.hp-box { border-color: #e74c3c; }
+.ammo-box { border-color: #f1c40f; }
+.grenade-box { border-color: #e67e22; }
+.money-box { border-color: #2ecc71; color: #2ecc71; }
+.team-box { border-color: #3498db; }
+.enemy-box { border-color: #e74c3c; }
+
+#crosshair {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 24px; color: rgba(255,255,255,0.8); font-weight: bold;
 }
 
-/* Virtual Joystik */
-#joystick-zone {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    width: 120px;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    pointer-events: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#aimbot-indicator {
+  position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);
+  color: #2ecc71; font-weight: bold; display: none; background: rgba(0,0,0,0.6);
+  padding: 4px 10px; border-radius: 4px; border: 1px solid #2ecc71;
 }
 
-#joystick-knob {
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 255, 136, 0.8);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+/* SHOP */
+.modal-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
+  display: none; justify-content: center; align-items: center; z-index: 50;
 }
 
-/* O'ng tarafdagi tugmalar */
-#mobile-buttons {
-    position: absolute;
-    bottom: 40px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    pointer-events: auto;
+.shop-card {
+  background: #151d24; border: 1px solid #2c3e50; width: 600px;
+  padding: 25px; border-radius: 12px;
 }
 
-#btn-shoot {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(255, 68, 68, 0.85);
-    color: #fff;
-    font-weight: bold;
-    font-size: 14px;
-    border: 2px solid #fff;
-    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+.shop-card h2 { color: #3498db; margin-bottom: 5px; }
+.shop-balance { color: #2ecc71; font-weight: bold; margin-bottom: 15px; }
+
+.weapon-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;
 }
 
-#btn-jump {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: rgba(0, 150, 255, 0.85);
-    color: #fff;
-    font-weight: bold;
-    font-size: 13px;
-    border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+.weapon-card {
+  background: #1f2c38; padding: 12px; border-radius: 8px; text-align: center;
+  border: 1px solid #34495e;
 }
 
-#btn-reload {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 200, 0, 0.85);
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
-    border: 2px solid #fff;
+.weapon-card img { width: 100%; height: 90px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; }
+.weapon-card h3 { font-size: 15px; color: #fff; }
+.weapon-card p { font-size: 11px; color: #bdc3c7; margin-bottom: 8px; }
+
+.weapon-card button {
+  background: #2ecc71; border: none; color: #fff; padding: 6px 12px;
+  border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;
 }
 
-/* Modal UI */
-#overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
-}
-
-.card {
-    background: #1c1d22;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    width: 340px;
-    border: 1px solid #333;
-}
-
-.card h1 {
-    margin-bottom: 15px;
-    color: #00ff88;
-}
-
-.card input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    border: none;
-    background: #2b2c34;
-    color: #fff;
-}
-
-.card button {
-    width: 100%;
-    padding: 12px;
-    background: #00ff88;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 15px;
-}
-
-#leaderboard-list {
-    list-style: none;
-    text-align: left;
-    max-height: 120px;
-    overflow-y: auto;
-}
-
-#leaderboard-list li {
-    padding: 5px 0;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
+#close-shop-btn {
+  width: 100%; background: #e74c3c; border: none; color: #fff;
+  padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer;
 }
